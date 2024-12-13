@@ -34,11 +34,25 @@ catch (error){
 
 }
 
-
-
-
-
 });
+
+app.get('/bbb',async (request,response) => {
+
+    try{
+    const bookings = await Booking.find({});
+    return response.status(200).json(bookings);
+    
+    }catch(error){
+    
+    
+    console.log(error.message);
+    response.status(500).send({ message: error.message});
+    
+    
+    }
+    
+    
+    });
 
 
 
