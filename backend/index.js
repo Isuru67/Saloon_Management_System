@@ -36,7 +36,7 @@ catch (error){
 
 });
 
-app.get('/bbb',async (request,response) => {
+app.get('/nbooking',async (request,response) => {
 
     try{
     const bookings = await Booking.find({});
@@ -53,6 +53,48 @@ app.get('/bbb',async (request,response) => {
     
     
     });
+
+    app.get('/nbooking/:id',async (request,response) => {
+
+        try{
+    
+        const {id} = request.params;
+        const booking = await Booking.findById(id);
+        return response.status(200).json(booking);
+            
+        }catch(error){
+            
+            
+        console.log(error.message);
+        response.status(500).send({ message: error.message});
+            
+            
+        }
+            
+            
+        });
+
+app.get('/nbooking/:cusId',async (request,response) => {
+
+    try{
+
+    const {cusId} = request.params;
+    const booking = await Booking.findOne({cusId});
+    return response.status(200).json(booking);
+        
+    }catch(error){
+        
+        
+    console.log(error.message);
+    response.status(500).send({ message: error.message});
+        
+        
+    }
+        
+        
+    });
+
+
 
 
 
